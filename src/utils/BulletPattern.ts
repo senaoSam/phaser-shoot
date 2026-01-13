@@ -1,14 +1,9 @@
 ﻿import Phaser from 'phaser';
 import { EnemyBullet } from '../objects/EnemyBullet';
-import { GameConfig } from '../config/GameConfig';
 export class BulletPattern {
-  private scene: Phaser.Scene;
   private patternAngle: number = 0; 
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-  }
   straight(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     count: number = 3
   ) {
@@ -22,7 +17,7 @@ export class BulletPattern {
     }
   }
   fan(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     count: number = 5,
     spreadAngle: number = Math.PI / 4
@@ -43,7 +38,7 @@ export class BulletPattern {
     }
   }
   spiral(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     count: number = 8,
     time: number = 0
@@ -64,7 +59,7 @@ export class BulletPattern {
     this.patternAngle += 0.1;
   }
   homing(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     targetX: number,
     targetY: number,
@@ -74,8 +69,6 @@ export class BulletPattern {
     const dy = targetY - source.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance === 0) return;
-    const baseVelocityX = dx / distance;
-    const baseVelocityY = dy / distance;
     const spread = 0.2; 
     const spacing = spread / (count - 1);
     for (let i = 0; i < count; i++) {
@@ -95,7 +88,7 @@ export class BulletPattern {
     }
   }
   circle(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     count: number = 12
   ) {
@@ -113,7 +106,7 @@ export class BulletPattern {
     }
   }
   wave(
-    source: Phaser.GameObjects.GameObject,
+    source: any,
     bulletGroup: Phaser.Physics.Arcade.Group,
     count: number = 5,
     waveAmplitude: number = 50,

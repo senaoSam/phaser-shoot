@@ -90,7 +90,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     const spreadState = powerUpManager.getPowerUpState(PowerUpType.SPREAD_SHOT);
     const spreadLevel = spreadState ? spreadState.level : 0;
     const hasDamageBoost = powerUpManager.hasDamageBoost();
-    const damageBoostLevel = powerUpManager.getPowerUpState(PowerUpType.DAMAGE_BOOST)?.level || 0;
     const bulletCount = spreadLevel > 0 ? 1 + spreadLevel * 2 : 1;
     const baseAngle = -Math.PI / 2; 
     const spreadAngle = spreadLevel > 0 ? Math.PI / 6 : 0; 

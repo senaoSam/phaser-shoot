@@ -1,12 +1,10 @@
 ﻿import Phaser from 'phaser';
 export class AudioManager {
-  private scene: Phaser.Scene;
   private sounds: Map<string, Phaser.Sound.BaseSound> = new Map();
   private musicVolume: number = 0.5;
   private sfxVolume: number = 0.7;
   private backgroundMusic: Phaser.Sound.BaseSound | null = null;
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
+  constructor(_scene: Phaser.Scene) {
   }
   setupSounds() {
   }
@@ -16,7 +14,7 @@ export class AudioManager {
       sound.play({ volume: volume * this.sfxVolume });
     }
   }
-  playMusic(key: string = 'bgm') {
+  playMusic(_key: string = 'bgm') {
     if (this.backgroundMusic) {
       this.backgroundMusic.stop();
     }
@@ -29,7 +27,7 @@ export class AudioManager {
   setMusicVolume(volume: number) {
     this.musicVolume = Phaser.Math.Clamp(volume, 0, 1);
     if (this.backgroundMusic) {
-      this.backgroundMusic.setVolume(this.musicVolume);
+      (this.backgroundMusic as any).setVolume(this.musicVolume);
     }
   }
   setSfxVolume(volume: number) {

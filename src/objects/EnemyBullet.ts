@@ -29,7 +29,6 @@ export class EnemyBullet extends Phaser.Physics.Arcade.Sprite {
     if (speed) {
       this.speed = speed;
     }
-    const originalVY = velocityY;
     if (velocityY < 0) {
       velocityY = -velocityY;
       velocityX = -velocityX;

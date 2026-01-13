@@ -94,8 +94,7 @@ export class PowerUpManager {
   private fireMissile() {
     const state = this.powerUps.get(PowerUpType.MISSILE);
     if (!state) return;
-    const maxLevel = Math.min(state.level, 8);
-    const missilesPerShot = 1; 
+    const maxLevel = Math.min(state.level, 8); 
     const enemies = this.scene.data.get('enemies') as Phaser.Physics.Arcade.Group;
     if (!enemies || enemies.children.size === 0) return;
     const player = this.player as any;
@@ -217,7 +216,7 @@ export class PowerUpManager {
   hasDamageBoost(): boolean {
     return this.powerUps.has(PowerUpType.DAMAGE_BOOST);
   }
-  update(time: number, delta: number) {
+  update(_time: number, delta: number) {
     const missileState = this.powerUps.get(PowerUpType.MISSILE);
     if (missileState) {
       const maxLevel = Math.min(missileState.level, 8);

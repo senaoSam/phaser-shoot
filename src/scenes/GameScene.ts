@@ -25,8 +25,6 @@ export class GameScene extends Phaser.Scene {
   private cameraShakeIntensity: number = 0;
   private particleManager!: ParticleManager;
   private audioManager!: AudioManager;
-  private enemyBulletCollider!: Phaser.Physics.Arcade.Collider;
-  private enemyCollider!: Phaser.Physics.Arcade.Collider;
   constructor() {
     super({ key: 'GameScene' });
   }
@@ -119,7 +117,7 @@ export class GameScene extends Phaser.Scene {
       undefined,
       this
     );
-    this.enemyCollider = this.physics.add.overlap(
+    this.physics.add.overlap(
       this.enemies,
       this.player,
       (enemy: any) => {
@@ -136,10 +134,10 @@ export class GameScene extends Phaser.Scene {
       undefined,
       this
     );
-    this.enemyBulletCollider = this.physics.add.overlap(
+    this.physics.add.overlap(
       this.enemyBullets,
       this.player,
-      (bullet: any, player: any) => {
+      (bullet: any, _player: any) => {
         if (!bullet || !bullet.active || !this.player || !this.player.active) {
           return;
         }
@@ -189,7 +187,7 @@ export class GameScene extends Phaser.Scene {
     this.physics.add.overlap(
       this.player,
       this.treasureBoxes,
-      (player: any, box: any) => {
+      (_player: any, box: any) => {
         if (!box || !box.active || !this.player || !this.player.active) {
           return;
         }

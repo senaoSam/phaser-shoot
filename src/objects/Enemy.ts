@@ -15,10 +15,10 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, 'enemy');
     this.sceneRef = scene;
     this.patternType = patternType;
-    this.bulletPattern = new BulletPattern(scene);
+    this.bulletPattern = new BulletPattern();
     if (!scene.textures.exists('enemy')) {
       console.warn('敵人 texture 不存在，正在創建臨時 texture');
-      const graphics = scene.make.graphics({ x: 0, y: 0, add: false });
+      const graphics = scene.make.graphics({ x: 0, y: 0 });
       graphics.fillStyle(0xff0000);
       graphics.fillRect(0, 0, 30, 30);
       graphics.lineStyle(2, 0xffffff);
@@ -69,7 +69,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       this.setVelocity(Phaser.Math.Between(-80, 80), this.speed);
     }
   }
-  update(time: number, delta: number) {
+  update(_time: number, delta: number) {
     if (!this.active) return; 
     if (this.shootCooldown > 0) {
       this.shootCooldown -= delta;
@@ -99,7 +99,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       case 1:
         const dx = playerX - this.x;
         const dy = playerY - this.y;
-        const angle = Math.atan2(dy, dx);
         this.shootFanTowardsPlayer(playerX, playerY, 5, Math.PI / 3);
         break;
       case 2:

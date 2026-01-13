@@ -1,8 +1,6 @@
 ﻿import Phaser from 'phaser';
 import { GameConfig } from '../config/GameConfig';
 export class PlayerBullet extends Phaser.Physics.Arcade.Sprite {
-  private baseScale: number = 1.0; 
-  private baseTint: number = 0xffffff; 
   private hasHit: boolean = false; 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'bullet-player');
@@ -13,14 +11,13 @@ export class PlayerBullet extends Phaser.Physics.Arcade.Sprite {
     this.setVisible(false);
     this.setOrigin(0.5, 0.5);
   }
-  fire(x: number, y: number, maxPenetration: number = 0, velocityX?: number, velocityY?: number, scale?: number, tint?: number) {
+  fire(x: number, y: number, _maxPenetration: number = 0, velocityX?: number, velocityY?: number, scale?: number, tint?: number) {
     this.setActive(true);
     this.setVisible(true);
     this.setPosition(x, y);
     this.hasHit = false; 
     const finalScale = scale !== undefined ? scale : 1.0;
     this.setScale(finalScale, finalScale);
-    this.baseScale = finalScale;
     if (this.body) {
       const baseSize = 8;
       const newSize = baseSize * finalScale;
@@ -28,10 +25,8 @@ export class PlayerBullet extends Phaser.Physics.Arcade.Sprite {
     }
     if (tint !== undefined) {
       this.setTint(tint);
-      this.baseTint = tint;
     } else {
       this.clearTint();
-      this.baseTint = 0xffffff;
     }
     if (velocityX !== undefined && velocityY !== undefined) {
       this.setVelocity(velocityX, velocityY);

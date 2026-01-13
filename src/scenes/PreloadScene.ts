@@ -16,7 +16,7 @@ export class PreloadScene extends Phaser.Scene {
       text: '載入中...',
       style: {
         font: '20px Arial',
-        fill: '#ffffff'
+        color: '#ffffff'
       }
     });
     loadingText.setOrigin(0.5, 0.5);
@@ -26,7 +26,7 @@ export class PreloadScene extends Phaser.Scene {
       text: '0%',
       style: {
         font: '18px Arial',
-        fill: '#00ffff'
+        color: '#00ffff'
       }
     });
     percentText.setOrigin(0.5, 0.5);
@@ -52,14 +52,14 @@ export class PreloadScene extends Phaser.Scene {
     this.createTreasureBoxSprite();
   }
   private createPlayerSprite() {
-    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    const graphics = this.make.graphics({ x: 0, y: 0 });
     graphics.fillStyle(0x00ffff);
     graphics.fillCircle(12, 12, 12);
     graphics.generateTexture('player', 24, 24);
     graphics.destroy();
   }
   private createEnemySprite() {
-    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    const graphics = this.make.graphics({ x: 0, y: 0 });
     graphics.fillStyle(0xff0000);
     graphics.fillRect(0, 0, 30, 30);
     graphics.lineStyle(2, 0xffffff);
@@ -69,26 +69,26 @@ export class PreloadScene extends Phaser.Scene {
     console.log('敵人 sprite 已創建: enemy (30x30)');
   }
   private createBulletSprites() {
-    const playerBullet = this.make.graphics({ x: 0, y: 0, add: false });
+    const playerBullet = this.make.graphics({ x: 0, y: 0 });
     playerBullet.fillStyle(0x00ffff);
     playerBullet.fillCircle(0, 0, 4);
     playerBullet.generateTexture('bullet-player', 8, 8);
     playerBullet.destroy();
-    const enemyBullet = this.make.graphics({ x: 0, y: 0, add: false });
+    const enemyBullet = this.make.graphics({ x: 0, y: 0 });
     enemyBullet.fillStyle(0xff00ff);
     enemyBullet.fillCircle(0, 0, 4);
     enemyBullet.generateTexture('bullet-enemy', 8, 8);
     enemyBullet.destroy();
   }
   private createParticleSprites() {
-    const particle = this.make.graphics({ x: 0, y: 0, add: false });
+    const particle = this.make.graphics({ x: 0, y: 0 });
     particle.fillStyle(0xffff00);
     particle.fillCircle(0, 0, 2);
     particle.generateTexture('particle', 4, 4);
     particle.destroy();
   }
   private createTreasureBoxSprite() {
-    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    const graphics = this.make.graphics({ x: 0, y: 0 });
     graphics.fillStyle(0xffd700); 
     graphics.fillRect(0, 0, 24, 24);
     graphics.lineStyle(2, 0xffaa00); 
